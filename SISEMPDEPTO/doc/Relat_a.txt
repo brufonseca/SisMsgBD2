@@ -1,0 +1,30 @@
+/*------------------------------------------------------------------------*/
+/*SISEMP RE-CRIACAO DO BD-------------------------------------------------*/
+/*-a) Dados dos departamentos e seus emps (com seus telefones se tiverem)-*/
+/*------------------------------------------------------------------------*/
+DN          NOME        TEL         CHF         EN          ENOME       SAL         TEL       
+----------  ----------  ----------  ----------  ----------  ----------  ----------  ----------
+1           INF         2254        1           1           F.HENRIQUE  5000        1111      
+1           INF         2254        1           1           F.HENRIQUE  5000        2222      
+1           INF         2254        1           1           F.HENRIQUE  5000        3333      
+1           INF         2254        1           8           GERSON      500                   
+1           INF         2254        1           9           RIVELINO    500                   
+1           INF         2254        1           30          TINGA       4400                  
+1           INF         2254        1           10          WASHINGTON  600                   
+2           PRESIDENCI  3389        2           25          MURILO      505                   
+2           PRESIDENCI  3389        2           23          PINTINHO    3400                  
+2           PRESIDENCI  3389        2           2           RICARDO BE  3500                  
+3           MARKETING   3356        3           24          RISSUT      505                   
+3           MARKETING   3356        3           3           TUTA        2000        3112      
+3           MARKETING   3356        3           3           TUTA        2000        3443      
+3           MARKETING   3356        3           3           TUTA        2000        3452      
+4           SALA DE IM  5544        4           4           EDUARDO RA  3000                  
+4           SALA DE IM  5544        4           17          JUNIOR CES  2000                  
+4           SALA DE IM  5544        4           18          ROGER       500                   
+5           ADM         3356        5           19          C.A.TORRES  2800                  
+5           ADM         3356        5           20          DIDI        2000                  
+5           ADM         3356        5           5           THIAGO SIL  3000                  
+6           COMISSAO T  3367        6           6           MARCAO      4000                  
+6           COMISSAO T  3367        6           21          MUSSUM      1000                  
+6           COMISSAO T  3367        6           22          ZACARIAS    900                   
+7           DP          3355        7           7           THIAGO NEV  1500                  

@@ -1,0 +1,82 @@
+PUC-Rio Departamento de Informática-TBDS 
+Profs Rubens e Ana
+
+                  SISTEMA EMPREGADOS e DEPARTAMENTOS  (SISEMPDEPTO)
+
+Enunciado:  Desenvolver um BD Relacional para atender o seguinte minimundo:
+
+"Um empresa tem departamentos e empregados. Cada empregado TRABALHA obrigatoriamente em um único departamento. Os empregados tem matricula, nome, salário e vários (0 ou mais) telefones  como dados relevantes.  
+Os Salários  devem ser entre 500 e 5000  e o salario default é 1000 (r1). 
+Os deptos tem código, nome e telefone como dados relevantes. 
+
+Obs. No futuro devemos garantir...
+Cada depto tem um empregado chefe que deve TRABALHAR NESSE DEPTO(r2) E O CHEFE DEVE GANHAR MAIS QUE SEUS SUBORDINADOS(r3)”
+
+
+
+
+1) Projeto Conceitual do BD  
+
+Resposta: Faça um gráfico DER com 
+EMP(EN,Nome,Sal,{Tel})<<=Trabalha=> DEPTO(DN, Nome,Tel)
+                                                        
+                       <= chefia =>
+
+2) Projeto Lógico do BD
+
+Resposta:Escreva as Tabelas resultantes do mapeamento do 
+    Modelo Conceitual ==>Mod. Relacional
+
+EMP(EN,Nome,Sal,DN) onde  Trabalha:EMP[DN]==> Depto[DN]  
+    --                     
+ TELE(EN,Tel)           onde TELE[EN] ==> EMP[EN]  e
+      ------   
+
+DEPTO(DN,Nome, Tel, CHEFE)  onde Chefia:Depto[CHEFE]==> Emp[EN] 
+      --         
+
+3) Projeto Físico do BD
+
+Escolher os formatos dos dados, as chaves das tabelas,etc.
+
+Resposta: (Ver o script de criação e carga das tabelas na pasta MODULOS)
+
+4) Implementação
+
+4.1 A partir dos dados de empregados e deptos nos arquivos emp.txt tele.txt e depto.txt na pasta DADOS escreva um script em sql (na pasta MODULOS) para CRIAR e CARREGAR o BD empdepto.db. 
+ 
+Editar um script  criacargabdempdepto.sql para rodar via sqlite3
+
+Resposta: (ver o script na pasta MODULOS)
+
+4.2 TESTAR o BD EM SQL com as consultas e transações  a seguir:
+
+Obs.: lembre de ligar foreign_keys
+
+CONSULTAS   
+                
+a) Dados dos departamentos e seus emps (com seus telefones se tiverem)
+b) Nome e sal dos empregados que ganham menos da metade do sal de seus chefes .
+c) Numero e nome  dos chefes junto com os nomes e salario de seus empregados
+d) Numero e nome dos emps cujo telefone nao bate com o de seu depto.
+e) Numero e nome de chefes de deptos  e nomes de seus subordinados
+f) Por depto informar o maior, menor e a media de salario
+g) Por chefe de depto informar seu sal e a media de sal dos seus empregados
+	
+TRANSAÇÕES 
+
+Primeiro Salvar seu BD anterior!!!.
+
+Checar se os CONTROLES E OS ON DELETE e ON UPDATE estao funcionando.
+Sugestao: IMPRIMIR A TABELA MODIFICADA após cada transação.
+
+a) Atualizar sal de certos empregados 
+b) Trocar um certo empregado de depto  
+c) Atualizar Dn de Deptos
+d) Excluir um emp chefe etc  
+
+Organize seu sistema SISEMPDEPTO com 3 sub pastas:
+
+Mantenha este enunciado na pasta DOC
+Mantenha os dados emp.txt tele.txt depto.txt, os relatorios e o bd na pasta DADOS
+Coloque seus arquivos sql    na pasta MODULOS

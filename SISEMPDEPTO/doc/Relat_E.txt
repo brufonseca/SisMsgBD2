@@ -1,0 +1,19 @@
+/*------------------------------------------------------------------------*/
+/*SISEMP RE-CRIACAO DO BD-------------------------------------------------*/
+/*-e) Numero e nome de chefes de deptos e nomes de seus subordinados-----*/
+/*------------------------------------------------------------------------*/
+EN          CHEFE       EMPREGADO   DEPTO     
+----------  ----------  ----------  ----------
+1           F.HENRIQUE  GERSON      INF       
+1           F.HENRIQUE  RIVELINO    INF       
+1           F.HENRIQUE  WASHINGTON  INF       
+1           F.HENRIQUE  TINGA       INF       
+2           RICARDO BE  PINTINHO    PRESIDENCI
+2           RICARDO BE  MURILO      PRESIDENCI
+3           TUTA        RISSUT      MARKETING 
+4           EDUARDO RA  JUNIOR CES  SALA DE IM
+4           EDUARDO RA  ROGER       SALA DE IM
+5           THIAGO SIL  C.A.TORRES  ADM       
+5           THIAGO SIL  DIDI        ADM       
+6           MARCAO      MUSSUM      COMISSAO T
+6           MARCAO      ZACARIAS    COMISSAO T

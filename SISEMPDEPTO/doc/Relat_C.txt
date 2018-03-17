@@ -1,0 +1,19 @@
+/*------------------------------------------------------------------------*/
+/*SISEMP RE-CRIACAO DO BD-------------------------------------------------*/
+/*-c) Numero e nome dos chefes junto com os nomes e salario de seus------*/
+/*-empregados-------------------------------------------------------------*/
+EN          CHEFE       EMPREGADO   SAL       
+----------  ----------  ----------  ----------
+1           F.HENRIQUE  GERSON      500       
+1           F.HENRIQUE  RIVELINO    500       
+1           F.HENRIQUE  WASHINGTON  600       
+1           F.HENRIQUE  TINGA       4400      
+2           RICARDO BE  PINTINHO    3400      
+2           RICARDO BE  MURILO      505       
+3           TUTA        RISSUT      505       
+4           EDUARDO RA  JUNIOR CES  2000      
+4           EDUARDO RA  ROGER       500       
+5           THIAGO SIL  C.A.TORRES  2800      
+5           THIAGO SIL  DIDI        2000      
+6           MARCAO      MUSSUM      1000      
+6           MARCAO      ZACARIAS    900       

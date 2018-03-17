@@ -1,0 +1,14 @@
+/*------------------------------------------------------------------------*/
+/*SISEMP RE-CRIACAO DO BD-------------------------------------------------*/
+/*-b) Nome e sal dos empregados que ganham menos da metade do sal de seus-*/
+/*-chefes-----------------------------------------------------------------*/
+ENOME       SAL       
+----------  ----------
+GERSON      500       
+RIVELINO    500       
+WASHINGTON  600       
+ROGER       500       
+MUSSUM      1000      
+ZACARIAS    900       
+RISSUT      505       
+MURILO      505       

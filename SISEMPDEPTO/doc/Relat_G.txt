@@ -1,0 +1,12 @@
+/*------------------------------------------------------------------------*/
+/*SISEMP RE-CRIACAO DO BD-------------------------------------------------*/
+/*-g) Por chefe de depto informar seu sal e a media de sal dos seus-------*/
+/*-empregados-------------------------------------------------------------*/
+DEPTO       CHEFIA      SAL_CHEFIA  SAL_EMP   
+----------  ----------  ----------  ----------
+INF         F.HENRIQUE  5000.0      1500.0    
+PRESIDENCI  RICARDO BE  3500.0      1952.5    
+MARKETING   TUTA        2000.0      505.0     
+SALA DE IM  EDUARDO RA  3000.0      1250.0    
+ADM         THIAGO SIL  3000.0      2400.0    
+COMISSAO T  MARCAO      4000.0      950.0     
