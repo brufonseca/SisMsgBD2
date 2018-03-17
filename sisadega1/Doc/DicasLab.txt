@@ -1,0 +1,49 @@
+
+PUC-Rio Departamento de Informatica-TBDS 
+Profs Rubens e Ana
+                     DICAS PARA OS LABS
+
+1) MONTAR NO DESKTOP DE SUA MAQUINA DENTRO DE UMA PASTA MEUSIS AS PASTAS
+
+  APP (com os softwares que vc vai usar: 
+  SQLITE3.EXE, SQLITESPY.EXE, etc)
+
+  SISxxx (pasta do seu sistema) COM AS SUBPASTAS
+
+   DADOS (com os arquivos Banco de dados, Backups do BD, arquivos textos para carga etc )
+
+   DOC (Enunciado (em txt ou doc) do problema que o sistema vai atender, outras informações eventuais)
+
+   MODULOS (os modulos de programas fonte (e executáveis) para executar os pedidos do lab)
+
+
+2) VERIFIQUE SEUS DADOS DE ENTRADA ETC NA PASTA DADOS E 
+   PREPARE OS SCRIPS OU PROGRAMAS DE CRIA«¬O E/OU CARGA DO BD 
+   NA PASTA MODULOS
+
+3) VA PARA O DOS NA PASTA SISXXX 
+   CRIE / CARREGUE O BD NA PASTA DADOS USANDO O 
+   UTILITARIO .read NO DOS que executa os comandos num arquivo (OU VIA PROGRAMA OU VIA SQL ETC)
+
+   EX.: ..\APP\sqlite3 DADOS\empdepto.db ".read MODULOS\\criacargaempdepto.sql"
+
+   QUE CRIA O BD (SE NAO EXISTE) E 
+   ONDE OS COMANDOS .import DADOS\\arquivo de dados => tabela   
+   correspondente  DEVEM CARREGAR AS TABELAS DO BD
+
+
+4) AGORA FACA OS SQL OU PROGRAMAS PARA ATENDER OS PEDIDOS DO LAB NA PASTA M”DULOS
+
+   PARA TESTAR AS CONSULTAS/TRANSA«‘ES PRIMEIRO EXPERIMENTE-AS 
+   NO SQLITESPY DEPOIS CONSTRUA O SCRIPT EM SQL
+   QUE VAI GERAR O RELAT”RIO / TRANSA«√O ESPECÍFICO. 
+   ATEN«√O USE CABE«ALHOS, HEADERS ETC
+
+   CADA RELAT”RIO/TRANSA«√O DEVE PODER SER EXECUTADO VIA 
+   COMANDO DOS DO TIPO 
+ 
+     ..\APP\sqlite3 DADOS\empdepto.db ".read MODULOS\\MODULO.sql"
+
+   GERE OS  RELAT”RIOS DE SAIDA PRONTOS PARA IMPRIMIR NUMA 
+   PASTA DADOS\\SAIDAS\\relat1.txt, etc
+

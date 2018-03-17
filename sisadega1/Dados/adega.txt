@@ -1,0 +1,22 @@
+10|Santa Helena|Cabernet Sauvignon|2010|9|0
+11|Santa Helena|Cabernet Sauvignon|2012|3|0
+12|Santa Helena|Merlot|2010|9|0
+13|Santa Helena|Merlot|2010|1|0
+14|Santa Helena|Merlot|2010|1|0
+20|Casco Viejo|Tannat|2010|5|0
+21|Casco Viejo|Tannat|2010|5|0
+22|Casco Viejo|Tannat|2010|5|0
+33|Buena Vista|Merlot|2010|5|0
+39|Buena Vista|Merlot|2000|6|0
+40|Ch. St. Jean|Gewurztraminer|1998|3|0
+43|Liebefraumilch|Fine Blanc|2011|12|0
+51|Robt. Mondavi|Fume Blanc|1997|4|0
+52|Robt. Mondavi|Fume Blanc|1996|2|0
+58|Robt. Mondavi|Cabernet Sauvignon|1993|12|0
+61|Simi|Chardonnay|1996|4|0
+62|Simi|Chardonnay|1998|1|0
+72|Clos du Bois|Pinot Noir|1995|2|0
+78|Clos du Bois|Merlot|1994|9|0
+80|Geyser Peak|Cabernet Sauvignon|1994|12|0
+82|Geyser Peak|Pinot Noir|1996|3|0
+81|Geyser Peak|Pinot Noir|1993|3|0
