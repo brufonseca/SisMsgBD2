@@ -2,7 +2,7 @@ object TELAEdicao: TTELAEdicao
   Left = 192
   Top = 133
   Caption = 'Editor de Mensagens Secretas'
-  ClientHeight = 367
+  ClientHeight = 430
   ClientWidth = 832
   Color = clCream
   Font.Charset = DEFAULT_CHARSET
@@ -29,7 +29,7 @@ object TELAEdicao: TTELAEdicao
   end
   object LblTConv: TLabel
     Left = 24
-    Top = 191
+    Top = 237
     Width = 136
     Height = 20
     Caption = 'Texto Convertido'
@@ -44,7 +44,7 @@ object TELAEdicao: TTELAEdicao
     Left = 687
     Top = 32
     Width = 129
-    Height = 313
+    Height = 379
     Picture.Data = {
       0A544A504547496D61676589620100FFD8FFE000104A46494600010101006000
       600000FFDB004300010101010101010101010101010101010101010101010101
@@ -2905,7 +2905,7 @@ object TELAEdicao: TTELAEdicao
     Left = 440
     Top = 39
     Width = 241
-    Height = 306
+    Height = 372
   end
   object MmoOriginal: TMemo
     Left = 24
@@ -2926,7 +2926,7 @@ object TELAEdicao: TTELAEdicao
   end
   object MmoConvertido: TMemo
     Left = 24
-    Top = 217
+    Top = 266
     Width = 281
     Height = 145
     Font.Charset = DEFAULT_CHARSET
@@ -2942,7 +2942,7 @@ object TELAEdicao: TTELAEdicao
   end
   object BtnConverte: TButton
     Left = 321
-    Top = 152
+    Top = 175
     Width = 113
     Height = 49
     Caption = '&Converte'
@@ -2956,7 +2956,7 @@ object TELAEdicao: TTELAEdicao
     OnClick = BtnConverteClick
   end
   object BtnLimpa: TButton
-    Left = 320
+    Left = 321
     Top = 32
     Width = 113
     Height = 49
@@ -2972,7 +2972,7 @@ object TELAEdicao: TTELAEdicao
   end
   object btnGrava: TBitBtn
     Left = 320
-    Top = 207
+    Top = 230
     Width = 114
     Height = 50
     Caption = '&GRAVAR CONV.'
@@ -2996,7 +2996,7 @@ object TELAEdicao: TTELAEdicao
   end
   object Panel1: TPanel
     Left = 320
-    Top = 263
+    Top = 313
     Width = 114
     Height = 82
     TabOrder = 5
@@ -3034,7 +3034,7 @@ object TELAEdicao: TTELAEdicao
   end
   object BtAdd: TButton
     Left = 320
-    Top = 87
+    Top = 110
     Width = 114
     Height = 58
     Caption = '&Adicionar'
@@ -3047,13 +3047,20 @@ object TELAEdicao: TTELAEdicao
     TabOrder = 6
     OnClick = BtAddClick
   end
-  object Button1: TButton
-    Left = 616
-    Top = 0
-    Width = 113
-    Height = 41
-    Caption = 'Insert BLOB'
+  object Button2: TButton
+    Left = 107
+    Top = 184
+    Width = 97
+    Height = 33
+    Caption = 'Adicionar Imagem'
     TabOrder = 7
-    OnClick = Button1Click
+    OnClick = Button2Click
+  end
+  object OpenPictureDialog1: TOpenPictureDialog
+    Filter = 
+      'All (*.jpg;*.jpeg)|*.jpg;*.jpeg|JPEG Image File (*.jpg)|*.jpg|JP' +
+      'EG Image File (*.jpeg)|*.jpeg'
+    Left = 456
+    Top = 8
   end
 end

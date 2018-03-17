@@ -27,7 +27,8 @@ type
      btnPREV: TButton;
      btnPROX: TButton;
     Image2: TImage;
-    Button1: TButton;
+    Button2: TButton;
+    OpenPictureDialog1: TOpenPictureDialog;
     procedure FormCreate(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
     procedure Sobre2Click(Sender: TObject);
@@ -38,6 +39,7 @@ type
     procedure btnPREVClick(Sender: TObject);
     procedure btnPROXClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -132,24 +134,12 @@ end;
 
 procedure TTELAEdicao.BtAddClick(Sender: TObject);
 //adiciona nova msg na tab de msgs ( use foto nula)
-var
-inspic:integer; OpenPicture:TOpenPictureDialog; arquivo:string;
 begin
  if length(MmoOriginal.Text)>0 then begin
  // if EdtAutor.text='' then  EdtAutor.text:='[?]';
   tt:=b.GetUniTable
    ('insert into msgss2 values(null,"'+MmoOriginal.Text+'",null,null)');
-  inc(NN);i:=NN; showmessage(' Nova Msg adicionada!');
-  {inspic:=MessageDlg('Deseja cadastrar uma imagem para a mensagem?',mtConfirmation,mbYesNo,0);
-  if inspic=6 then begin
-          OpenPicture:=TOpenPictureDialog.Create(OpenPicture);
-          if OpenPicture.Execute() then begin
-            arquivo:=OpenPicture.FileName;
-            showmessage(arquivo);
-          end;
-  end; }
-
-
+  inc(NN);i:=NN; showmessage(' Nova Msg adicionada!');  
   tt.Free
  end
  else showmessage(' Escreva a nova Msg !');
@@ -207,7 +197,7 @@ procedure TTELAEdicao.Button1Click(Sender: TObject);
 var
 ms:TMemoryStream;
 begin
-  
+
 
    ms:=TMemoryStream.Create;
    ms.LoadFromFile('..\\DADOS\fotos\amor1.jpg');
@@ -220,6 +210,29 @@ end;
 
 
 
+
+procedure TTELAEdicao.Button2Click(Sender: TObject);
+var
+inspic:integer; arquivo:string;
+ms:TMemoryStream;
+begin
+inspic:=MessageDlg('Deseja cadastrar uma imagem para a mensagem?',mtConfirmation,mbYesNo,0);
+  if inspic=6 then begin
+  if OpenPictureDialog1.Execute() then begin
+   arquivo:=OpenPictureDialog1.FileName;
+         showmessage(arquivo);
+         ms:=TMemoryStream.Create;
+         ms.LoadFromFile(arquivo);
+         showmessage('UPDATE MSGSS2 SET FOTO=? WHERE NUM='+inttostr(i)+';');
+
+         b.UpdateBlob('UPDATE MSGSS2 SET FOTO=? WHERE NUM='+inttostr(i)+';',ms)  ;
+
+         MsgToMemo1(MmoOriginal,image2,i);
+
+
+          end;
+  end;
+end;
 
 procedure TTELAEdicao.FormCreate(Sender: TObject);
 begin
