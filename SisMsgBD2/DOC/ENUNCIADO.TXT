@@ -1,0 +1,112 @@
+PUC-Rio Departamento de Informática-TBDS 
+Profs Rubens e Ana
+
+   SISTEMA MENSAGENS (versao usando BD) (SISmsgBD) com Delphi acessando o BD  e mostrando na tela (IU)
+
+Enunciado:  Desenvolver um sistema SISmsgsBD para atender o seguinte minimundo:
+ Temos um BD  com tabela de mensagens textuais para serem exibidas convertidas segundo um "codigo secreto" e gravadas como mensagem convertida na mesma tabela de mensagens.
+ Fazer um módulo CONVERTE de conversão que use um código de conversão reversível, ou seja,
+  ( Converte(Converte(msg))=msg ) . USAR UMA IMAGEM PARA ILUSTRAR A MSG
+
+O Projeto deve estar em uma pasta SISmsgsBD com os subdiretorios 
+  DADOS, DOC e MODULOS
+
+I) Projeto Conceitual do BD  
+Resposta: Apenas uma Classe de mensagens com atributos numero_da_mensagem, texto, autor e mensagem_convertida. Na interface, usar um formulario onde serão apresentadas sequencialmente as mensagens existentes para escolha (O sistema deve permitir tambem inclusões de novas mensagens). A mensagem escolhida poderá ser convertida, mostrada e sua versão convertida gravada no BD
+
+II) a)Projeto Lógico do BD
+ Um BD sqlite MSGS.DB com uma tabela MSGSS(NUM integer, MSG text, AUTOR text, MSGC text); 
+ onde o texto MSGC será o resultado de CONVERTE(MSG).
+   
+   b)Projeto Lógico da IU
+    b1)UM form principal que contem dois memos (memo1 e memo2) para as mensagens de entrada
+    e saida. O form tambem tem botões para controlar o processamento das mensagens
+
+   c)Projeto Lógico do Processo de conversão
+     Módulo de Conversão da mensagem do 1o memo para ser gravada no 2o memo
+     A conversão será como segue:
+
+      Usar Cod=´gaderipolutyGADERIPOLUTY' que é um Código reversível. (Poderia ser outro...)
+      O modulo vai codificando cada caracter do texto do memo1 segundo a lógica abaixo:
+
+      PARA CADA char do texto do memo1	FACA 
+       SE char esta no Codigo Cod 
+	ENTAO 
+         SE posicao do char é par ENTAO troca-o pelo anterior 
+		                  SENAO troca-o pelo posterior 
+         FIM_SE	
+        SENAO (nao troca)
+       FIM_SE
+       grava-o no texto do Memo2 de saida. 
+      FIM-PARA	   
+		   
+III) a)Projeto Físico do  BD de mensagens
+     Escolher os formatos dos dados, as chaves das tabelas,etc. e criar o BD MSGS.DB 
+   
+   b)Projeto Físico da IU 
+
+   1- Iniciar um novo projeto no IDE Delphi
+   (Vcl Forms Application) e inserir mais 2 forms.
+   2- Dar nome aos Forms (via propriedade Name de cada um),
+    Form1 -> FrmPrincipal,
+    Form2 -> FrmEdicao e 
+    Form3 -> FrmSobre.
+   3- Salvar todo o projeto na pasta MODULOS.
+    SAVE ALL, dando nomes as Units correspondentes
+    como UPrincipal, UEdicao e USobre.
+    O nome do projeto deve ser PmsgSecreta.
+   4- O FrmPrincipal deverá ter:
+    um Menu com as opções e subopções:
+     [Edição] e [Ajuda [Como Usar..., Sobre... e Sair)]]
+     que chamarão os outros dois forms, o FrmEdicao e o FrmSobre
+	e deve também mostrar uma figura ilustrativa do sistema no form principal.
+   5- O item de menu Edição mostra (MODALmente) o formulário de Edição
+      Os outros subitens de menu do item Ajuda exibem 
+       mensagens de uso [Como Usar...], 
+       mensagem de informação sobre o sistema [Sobre...] e
+       um item de saida do programa. [Sair].
+   6- O formulario de Edição deve ter dois Memos (um para o texto de entrada e
+      outro para o texto convertido) e as ações sao comandadas por botões:
+       Limpa     (limpa os Memos)
+       Converte  (converte texto do Memo1 e grava-o no Memo2)
+       Grava     (grava o texto convertido atual do Memo2 na tabela MSGSS (no BD))
+       < >       (Pega a mensagem previa (<) ou proxima (>) respectivamente).
+
+   c)Projeto Físico (parcial)
+      (segue o código (abaixo) do evento de click no botao Converte) 
+....	  
+const c: string = 'gaderypolutiGADERYPOLUTI';
+var   p, i,  t : integer; ch: char;  s,ss: string;
+begin
+   s:= Mmemo1.Text;
+   ss:= ''; ch := s[1];
+   t := length(Memo1.text); i:= 1;
+   while i<=t do
+   begin
+      { processa o dado }
+      p:= pos(ch, c);
+      if p< 1
+      then
+      else if  p mod 2  = 0
+               then ch := c[p-1]
+               else ch := c[p+1];
+      ss:= ss + ch;
+      { obtem o próximo }
+      i:= i+1; ch:= s[i]
+   end;
+   Memo2.Text:= ss;
+....
+IV) Prepare uma pasta SisMsgBD com subpastas DADOS, DOC e MODULOS 
+Organize seu sistema :
+
+Mantenha este enunciado na pasta DOC
+Mantenha os dados msgs.db  na pasta DADOS
+Coloque seus arquivos fontes Pascal e os seus complementos na pasta MODULOS. 
+
+Mantenha o Sqlite3 e Sqlitespy numa pasta APP conhecida
+Obs.: O sistema DELPHI não deve ser incluido em APP
+
+ 
+
+	  
+	 
