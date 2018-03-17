@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, jpeg, Menus, Buttons,
 
-  sqlitetable3;//<<==    // este modulo so usa rotinas dessa unit
+  sqlitetable3, ExtDlgs;//<<==    // este modulo so usa rotinas dessa unit
 
 type
   TTELAEdicao = class(TForm)
@@ -70,7 +70,6 @@ begin
 
     if tt.FieldIsNull(1) then begin
         //showmessage('Imagem não encontrada no banco!');
-        // Img.Picture.LoadFromFile('..\\DADOS\fotos\ImgNotFound.bmp')// FieldAsBlob(1);
         img.Visible:=false
      end
      else begin
@@ -82,38 +81,6 @@ begin
         img.Visible:=true;
         img.Stretch:=true
      end;
-  end;
-  TT.Free;
-end;
-
-procedure MsgToMemoAux(Var memo1:Tmemo; Var img:Timage; n:integer);
-// pega na nesima linha da tabela de msgs as cols  msg,autor => memo1 e autor
-var
-ms:TMemoryStream; pic:TJPegImage;
-
-begin
-  tt:=b.GetUniTable('select msg,foto,msgc from msgss2 where num='+inttostr(n));
-  with tt do begin
-    if FieldIsNull(0)
-    then begin
-     memo1.Text:= ' Msg nula ';
-    end
-    else begin
-     memo1.Text:=  FieldAsBlobtext (0); // msg na col 0
-
-    end;
-    if tt.FieldIsNull(1)  then
-    else begin
-    
-    ms:=FieldAsBlob(FieldIndex['foto']);
-    ms.Position:=0;
-    pic:=TJPEGImage.Create;
-    pic.LoadFromStream(ms);
-    img.Picture.graphic:=pic;
-    img.Visible:=true;
-    img.Stretch:=true;
-      end;
-
   end;
   TT.Free;
 end;
@@ -165,12 +132,24 @@ end;
 
 procedure TTELAEdicao.BtAddClick(Sender: TObject);
 //adiciona nova msg na tab de msgs ( use foto nula)
+var
+inspic:integer; OpenPicture:TOpenPictureDialog; arquivo:string;
 begin
  if length(MmoOriginal.Text)>0 then begin
  // if EdtAutor.text='' then  EdtAutor.text:='[?]';
   tt:=b.GetUniTable
    ('insert into msgss2 values(null,"'+MmoOriginal.Text+'",null,null)');
   inc(NN);i:=NN; showmessage(' Nova Msg adicionada!');
+  {inspic:=MessageDlg('Deseja cadastrar uma imagem para a mensagem?',mtConfirmation,mbYesNo,0);
+  if inspic=6 then begin
+          OpenPicture:=TOpenPictureDialog.Create(OpenPicture);
+          if OpenPicture.Execute() then begin
+            arquivo:=OpenPicture.FileName;
+            showmessage(arquivo);
+          end;
+  end; }
+
+
   tt.Free
  end
  else showmessage(' Escreva a nova Msg !');
@@ -247,7 +226,7 @@ begin
    i:= 1;  // CARREGA A 1A MSG
       MsgToMemo1(MmoOriginal,image2,1); MmoConvertido.Clear;
       Image2.Stretch:=True;
-      //MsgToMemoAux(MmoOriginal,image2,1);
+      
 //      Image2.Picture.LoadFromFile('..\\DADOS\fotos\amor'+inttostr(i)+'.bmp');
 end;
 
