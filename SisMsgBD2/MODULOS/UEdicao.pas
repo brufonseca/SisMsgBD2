@@ -58,29 +58,30 @@ uses USobre;
 
 {$R *.dfm}
 //===================================================
-Procedure MsgToMemo1(Var memo1:Tmemo; Var img:Timage; n:integer;Var memo2:Tmemo);
+Procedure MsgToMemo1(Var memo1:Tmemo; Var img:Timage; n:integer);
 // pega na nesima linha da tabela de msgs as cols  msg,autor => memo1 e autor
+var
+ms:TMemoryStream; pic:TJPegImage;
 begin
-  tt:=b.GetUniTable('select msg,foto,msgc from msgss2 where num='+inttostr(n));
+  tt:=b.GetUniTable('select msg,foto from msgss2 where num='+inttostr(n));
   with tt do begin
-    if FieldIsNull(0)
-    then begin
-     memo1.Text:= ' Msg nula ';
-    end
-    else begin
-     memo1.Text:=  FieldAsBlobtext (0); // msg na col 0
-     memo2.Text:=  FieldAsBlobtext (2);
-    end;
+    if FieldIsNull(0) then  memo1.Text:= ' Msg nula '
+    else  memo1.Text:=  FieldAsBlobtext (0); // msg na col 0
+
     if tt.FieldIsNull(1) then begin
         //showmessage('Imagem não encontrada no banco!');
-         Img.Picture.LoadFromFile('..\\DADOS\fotos\ImgNotFound.bmp')// FieldAsBlob(1);
+        // Img.Picture.LoadFromFile('..\\DADOS\fotos\ImgNotFound.bmp')// FieldAsBlob(1);
+        img.Visible:=false
      end
-     else if not fileexists('..\\DADOS\fotos\amor'+inttostr(i)+'.bmp') then begin
-          //showmessage('Arquivo de imagem não encontrado!');
-          Img.Picture.LoadFromFile('..\\DADOS\fotos\ImgNotFound.bmp')// FieldAsBlob(1);
-     end
-     else
-       Img.Picture.LoadFromFile('..\\DADOS\fotos\amor'+inttostr(i)+'.bmp');// FieldAsBlob(1);
+     else begin
+        ms:=FieldAsBlob(FieldIndex['foto']);
+        ms.Position:=0;
+        pic:=TJPEGImage.Create;
+        pic.LoadFromStream(ms);
+        img.Picture.graphic:=pic;
+        img.Visible:=true;
+        img.Stretch:=true
+     end;
   end;
   TT.Free;
 end;
@@ -150,24 +151,8 @@ procedure TTELAEdicao.btnGravaClick(Sender: TObject);
 // grava uma msg convertida
 
 begin
-{if length(MmoConvertido.Text)<=0
-   then showmessage('Não há msg para gravar.Clicar em converter!')
-   else
-    begin
-    tt:=b.GetUniTable('select num from msgss2 where msg="'+MmoOriginal.Text+'"');
-    x:= tt.FieldAsInteger(0);
-    if not tt.FieldIsNull(0) then
-       begin
-         SHOWMESSAGE('Gravando na linha '+inttostr(x)+' da Tab de Msg') ;
-         tt:=b.GetUniTable
-           ('Update msgss2 set msgc= "'+MmoConvertido.text+'" where num='+inttostr(x));
-         showmessage('Mensagem gravada!')
-       end
-       else showmessage('Mensagem original não encontrada no banco!');
-    end;
-    TT.Free;    }
-    if length(MmoConvertido.Text)<=0
-   then showmessage('Não há msg para gravar.Clicar em converter!')
+   if length(MmoConvertido.Text)<=0
+      then showmessage('Não há msg para gravar.Clicar em converter!')
    else
     begin
      SHOWMESSAGE('Gravando na linha '+inttostr(i)+' da Tab de Msg') ;
@@ -185,7 +170,7 @@ begin
  // if EdtAutor.text='' then  EdtAutor.text:='[?]';
   tt:=b.GetUniTable
    ('insert into msgss2 values(null,"'+MmoOriginal.Text+'",null,null)');
-  inc(NN);I:=NN; showmessage(' Nova Msg adicionada!');
+  inc(NN);i:=NN; showmessage(' Nova Msg adicionada!');
   tt.Free
  end
  else showmessage(' Escreva a nova Msg !');
@@ -223,29 +208,27 @@ procedure TTELAEdicao.btnPREVClick(Sender: TObject);
 begin
    dec(i);
    if i>=1 then  begin
-      MsgToMemo1(MmoOriginal,image2,i,MmoConvertido)
+      MsgToMemo1(MmoOriginal,image2,i)
    end
    else i:=1;   // parar na msg 1
- // MmoConvertido.Clear;
+   MmoConvertido.Clear;
 end;
 
 procedure TTELAEdicao.btnPROXClick(Sender: TObject);
 begin
   inc(i);
   if i<= NN then begin
-      //MsgToMemo1(MmoOriginal,image2,i,MmoConvertido) ;
-      MsgToMemoAux(MmoOriginal,image2,i) ;
+      MsgToMemo1(MmoOriginal,image2,i)
   end
   else i:=NN;   // parar na msg NN
- // MmoConvertido.Clear
+  MmoConvertido.Clear
 end;
 
 procedure TTELAEdicao.Button1Click(Sender: TObject);
 var
-ms:TMemoryStream;     pic:TJPegImage;
+ms:TMemoryStream;
 begin
-  // pic:=TJPEGImage.Create;
- //  pic.LoadFromFile('..\\DADOS\fotos\amor1.jpeg');
+  
 
    ms:=TMemoryStream.Create;
    ms.LoadFromFile('..\\DADOS\fotos\amor1.jpg');
@@ -262,7 +245,7 @@ end;
 procedure TTELAEdicao.FormCreate(Sender: TObject);
 begin
    i:= 1;  // CARREGA A 1A MSG
-      MsgToMemo1(MmoOriginal,image2,1,MmoConvertido); //MmoConvertido.Clear;
+      MsgToMemo1(MmoOriginal,image2,1); MmoConvertido.Clear;
       Image2.Stretch:=True;
       //MsgToMemoAux(MmoOriginal,image2,1);
 //      Image2.Picture.LoadFromFile('..\\DADOS\fotos\amor'+inttostr(i)+'.bmp');
