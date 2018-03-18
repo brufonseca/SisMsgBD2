@@ -2,7 +2,7 @@ object TELAPrincipal: TTELAPrincipal
   Left = 309
   Top = 32
   Caption = 'Editor de Mensagens Secretas'
-  ClientHeight = 619
+  ClientHeight = 639
   ClientWidth = 451
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object TELAPrincipal: TTELAPrincipal
     Left = 0
     Top = 0
     Width = 451
-    Height = 619
+    Height = 639
     Align = alClient
     Picture.Data = {
       0A544A504547496D61676589620100FFD8FFE000104A46494600010101006000

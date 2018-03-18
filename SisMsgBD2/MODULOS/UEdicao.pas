@@ -27,7 +27,7 @@ type
      btnPREV: TButton;
      btnPROX: TButton;
     Image2: TImage;
-    Button2: TButton;
+    btnAddImagem: TButton;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure FormCreate(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
@@ -38,8 +38,7 @@ type
     procedure btnGravaClick(Sender: TObject);
     procedure btnPREVClick(Sender: TObject);
     procedure btnPROXClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnAddImagemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,7 +70,7 @@ begin
     else  memo1.Text:=  FieldAsBlobtext (0); // msg na col 0
 
     if tt.FieldIsNull(1) then begin
-        //showmessage('Imagem não encontrada no banco!');
+        showmessage('Mensagem sem imagem cadastrada!');
         img.Visible:=false
      end
      else begin
@@ -127,7 +126,7 @@ begin
      SHOWMESSAGE('Gravando na linha '+inttostr(i)+' da Tab de Msg') ;
      tt:=b.GetUniTable
       ('Update msgss2 set msgc= "'+MmoConvertido.text+'" where num='+inttostr(i));
-     showmessage('Mensagem gravada!')
+     showmessage('Mensagem gravada!')  
     end;
     TT.Free;
 end;
@@ -170,6 +169,7 @@ begin
    MmoOriginal.Clear;
    MmoConvertido.clear;
    MmoOriginal.SetFocus;
+   Image2.Visible:=false;
    i:=1;
 end;
 
@@ -193,25 +193,8 @@ begin
   MmoConvertido.Clear
 end;
 
-procedure TTELAEdicao.Button1Click(Sender: TObject);
-var
-ms:TMemoryStream;
-begin
 
-
-   ms:=TMemoryStream.Create;
-   ms.LoadFromFile('..\\DADOS\fotos\amor1.jpg');
-   tt:=b.GetUniTable('UPDATE MSGSS2 SET FOTO=? WHERE NUM=26;') ;
-
-   b.UpdateBlob('UPDATE MSGSS2 SET FOTO=? WHERE NUM=26;',ms)
-
-end;
-
-
-
-
-
-procedure TTELAEdicao.Button2Click(Sender: TObject);
+procedure TTELAEdicao.btnAddImagemClick(Sender: TObject);
 var
 inspic:integer; arquivo:string;
 ms:TMemoryStream;
@@ -220,10 +203,10 @@ inspic:=MessageDlg('Deseja cadastrar uma imagem para a mensagem?',mtConfirmation
   if inspic=6 then begin
   if OpenPictureDialog1.Execute() then begin
    arquivo:=OpenPictureDialog1.FileName;
-         showmessage(arquivo);
+        // showmessage(arquivo);
          ms:=TMemoryStream.Create;
          ms.LoadFromFile(arquivo);
-         showmessage('UPDATE MSGSS2 SET FOTO=? WHERE NUM='+inttostr(i)+';');
+        // showmessage('UPDATE MSGSS2 SET FOTO=? WHERE NUM='+inttostr(i)+';');
 
          b.UpdateBlob('UPDATE MSGSS2 SET FOTO=? WHERE NUM='+inttostr(i)+';',ms)  ;
 

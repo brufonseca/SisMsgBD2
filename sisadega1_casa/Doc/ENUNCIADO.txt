@@ -1,0 +1,106 @@
+
+PUC-Rio Departamento de Informatica-TBDS 
+Profs Rubens e Ana
+                     EXERCÕCIO EM GRUPO - SISTEMA ADEGA1  (SISADEGA1)
+Enunciado: Desenvolver um sistema com BD Relacional  para atender o seguinte minimundo:
+
+"Uma adega pretende guardar informaçÁıes sobre vinhos: Produtor, tipo da uva, ano de colheita, quantidade de garrafas e preÁço do vinho  na adega.
+
+O precço do vinho depende do ano de colheita e do tipo da uva segundo a regra: 
+
+ Caso o tipo de uva seja Cabernet ou Tannat entao
+   caso o ano da colheita seja antes de 1992 entao o preÁço eh 350 reais  
+   sen„o o preÁço=30+(ano atual-ano colheita)*10 
+ senao preco=(ano atual-ano colheita)*10;
+
+O usu·rio do sistema quer gerenciar chegadas e saÌdas de garrafas e tambÈm determinar preçÁos, menor  preÁço etc.
+
+
+O sistema deve receber pedidos de 
+  i) Consultas sobre os vinhos na adega que satisfaÁam certas condiÁıes.
+ ii) MudanÁas (inserÁıes, exclusıes e atualizaÁıes) nos dados dos vinhos da adega.
+
+Exemplo de consultas (Os resultados devem ser gravados em arquivo que possam ser impressos):
+a) Lista dos vinhos (Produtor,Uva e Ano) com seus preçÁos
+b) Lista dos vinhos(Produtor,Uva e Ano) colhidos apÛs 1994 e seus precos 
+c) Vinhos com preçÁo em torno da media geral dos vinhos +- 20 reais 
+d) Quantas garrafas existem de Cabernet Sauvignon 
+e) Lista de vinhos(Produtor,Uva e Ano) mais caros de um certo tipo de uva (ex Tannat)
+f) Qual o vinho de maior preco POR produtor
+g) Qual o menor preçÁo POR tipo de uva
+
+
+TambÈm deve permitir mudançÁas no BD como:
+i) FaÁa um backup do adega.db
+j) Excluir vinhos com estoque zero
+k) Atualizar a quantidade no estoque de vinhos:
+Ex.: Dar baixa em 5 vinhos 'Santa Helena', 'Cabernet Sauvignon' do ano=2010) (subtrair 5 na quantidade).
+l) Inserir novos vinhos (com preco) por exemplo:   3 garrafas tipo Merlot da produtora Aurora colhido em 2009  
+m) Mudar a regra dos preçÁos para:
+ "Caso o ano seja menor que 1997 o preçÁo eh 200 
+  caso o ano seja 1997 o preÁço eh 150 
+  do contrario o preÁço eh 50+20(ano atual-ano)"
+"
+=====     SOLUCAO ==============================
+1) Projeto Conceitual do BD  (pronto)
+Trivial: So existe uma classe de objetos ADEGA
+
+2) Projeto LÛgico do BD (pronto)
+Trivial: Apenas uma tabela TADEGA(NUM,PRODUTOR,VINHO,ANO,GARRAFAS,preco) onde preÁço eh calculado pela regra dada
+
+3) Projeto Fisico do BD  (pronto)
+Escreva em SQL os comandos para criar esse BD (com a tabela Tadega vazia).  
+Resp.:
+
+drop table if exists Tadega;
+create table Tadega  (
+	num 		integer      primary key,
+	produtor	char(15),
+	uva 		char(15),
+        ano		integer,
+         garrafas	integer,
+       PRECO integer);
+
+
+4) Implementacao  
+Use o software SqliteSpy(em Windows) para testar os comandos SQL e o software Sqlite3 (em DOS) para gerar as respostas em arquivos txt
+
+4.1 Crie na subpasta DADOS um BD (um arquivo) chamado ADEGA.DB. 
+4.2 Edite um texto CriaCargaAdega.sql contendo a 
+1) (re)CriaçÁ„o (com os comandos de criaçÁ„o do item 3);  
+2) a Carga  da tabela Tadega a partir do arquivo ADEGA.TXT; 
+3) o calculo dos precos(.read modulos\\regrapreco.sql)
+
+Como a coluna de PRECO n„o È carregada corretamente (entrou 0) acrescente no final a chamada do mÛdulo REGRAPRECO.sql (na pasta MODULOS)para atualizar os precos.
+
+O mÛdulo REGRAPRECO.sql contem ...
+
+UPDATE Tadega SET preco=
+CASE WHEN uva='Cabernet Sauvignon' OR uva='Tannat' THEN
+   CASE WHEN Ano<1992 THEN 350 
+   ELSE 30+(2018-ano)*10 END
+ELSE (2018-ano)*10 END;
+
+
+4.4 Salve esses scripts de criaçÁ„o e carga da tabela Tadega na subpasta MODULOS
+    (o sufixo SQL serve para lembrar que s„o comandos SQL).
+ 
+5) Uso do Sistema:
+
+5.1 Criar na pasta MODULOS uma subpasta RELATORIOS com os v·rios scripts de  relatÛrios (Relat_a.sql, Relat_b.sql etc) 
+   com as consultas dos relatÛrios solicitados.
+5.2 Criar na pasta MODULOS uma subpasta TRANSACOES com os v·rios scripts de transaÁıes (Trans_j.sql,Trans_k.sql,etc)
+   que executam as v·rias atualizaÁıes solicitadas.
+5.3 Criar backup do bd atual adega.db no arquivo DADOS\adega.bkp antes das mudançÁas
+
+=============================================================================================
+
+Organize seu sistema como uma pasta SISADEGA1 com 3 subpastas  DADOS, DOC, MODULOS:
+
+Coloque seus arquivos sql       na sub-pasta MODULOS
+Mantenha os dados (o bd e outros dados)   na sub-pasta DADOS
+Mantenha outros textos e o enunciado Enunciado.txt     na sub-pasta DOC
+
+Mantenha os softwares (Sqlite)  na pasta separada APP paralela a do SISadega1
+
+ZIPE a pasta SISADEGA1 (menos  a subpasta APP)  E MANDE o SISADEGA1.ZIP para O ANJOPROG 

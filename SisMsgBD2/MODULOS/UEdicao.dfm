@@ -3047,14 +3047,14 @@ object TELAEdicao: TTELAEdicao
     TabOrder = 6
     OnClick = BtAddClick
   end
-  object Button2: TButton
+  object btnAddImagem: TButton
     Left = 107
     Top = 184
     Width = 97
     Height = 33
     Caption = 'Adicionar Imagem'
     TabOrder = 7
-    OnClick = Button2Click
+    OnClick = btnAddImagemClick
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Filter = 
